@@ -13,3 +13,88 @@
     clip-path: inset(50%);
     margin: -1px;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    display: block;
+}
+
+.container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-form {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: rgb(147, 142, 240);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input {
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: none;
+}
+
+.submit-btn {
+    color: white;
+    background-color: orange;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 4px;
+    border: orange;
+}
+
+
+
+.load-more {
+    display: flex;
+    color: white;
+    background-color: rgba(33, 150, 243, 1);
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 4px;
+    border: rgba(33, 150, 243, 1);
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.photo-card {
+    background-color: white;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.gallery {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.gallery__link {
+    text-decoration: none;
+}
