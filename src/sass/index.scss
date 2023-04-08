@@ -1,19 +1,6 @@
 @import './common';
 @import './example';
 
-.visually-hidden {
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    margin: -1px;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -29,17 +16,13 @@ img {
 }
 
 .container {
-    max-width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    height: 30px;
+
 }
 
 .search-form {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: rgb(147, 142, 240);
+    background-color: white;
     position: fixed;
     top: 0;
     z-index: 100;
@@ -57,15 +40,13 @@ img {
 
 .submit-btn {
     color: white;
-    background-color: orange;
+    background-color: rgba(33, 150, 243, 1);
     cursor: pointer;
     text-align: center;
     padding: 5px 20px;
     border-radius: 4px;
-    border: orange;
+    border: rgba(33, 150, 243, 1);
 }
-
-
 
 .load-more {
     display: flex;
@@ -80,6 +61,10 @@ img {
     margin-top: 15px;
 }
 
+.is-hidden {
+    display: none;
+}
+
 .photo-card {
     background-color: white;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -87,12 +72,10 @@ img {
 
 .gallery {
     justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 100px;
+    margin-top: 35px;
     display: flex;
+    gap: 83px;
     flex-wrap: wrap;
-    gap: 50px;
 }
 
 .gallery__link {
