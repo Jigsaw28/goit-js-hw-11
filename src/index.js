@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-
+import OnlyScroll from 'only-scrollbar';
 const API_KEY = '34776135-c2da03be0c2ba8614e7d82d4c';
 const URL = 'https://pixabay.com/api/';
 
