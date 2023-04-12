@@ -12,7 +12,7 @@ const imageApiService = new ImageApiService();
 formEl.addEventListener('submit', onSearch);
 btnLoadMore.addEventListener('click', onLoadMore);
 
-function onSearch(e) {
+async function onSearch(e) {
   clearMarkup();
   e.preventDefault();
   imageApiService.query = e.currentTarget.elements.searchQuery.value.trim();
@@ -20,41 +20,48 @@ function onSearch(e) {
   if (imageApiService.query === '') {
     Notiflix.Notify.info('Enter something');
   } else {
-    imageApiService.fetchImage().then(({ hits, totalHits }) => {
+    const newCard = await imageApiService.fetchImage();
+    const { hits, totalHits } = newCard;
+    try {
       if (hits.length === 0) {
-        btnLoadMore.classList.add('is-hidden');
-        Notiflix.Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-      } else {
-        Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-        appendMarkup(hits);
-        btnLoadMore.classList.remove('is-hidden');
+        return error;
       }
-    });
+      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+      appendMarkup(hits);
+      btnLoadMore.classList.remove('is-hidden');
+    } catch (error) {
+      btnLoadMore.classList.add('is-hidden');
+      Notiflix.Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+    }
   }
 }
 
-function onLoadMore() {
-  imageApiService.fetchImage().then(({ hits, totalHits }) => {
+async function onLoadMore() {
+  try {
+    const newCard = await imageApiService.fetchImage();
+    const { hits, totalHits } = newCard;
     const totalPage = totalHits / imageApiService.perPage;
     if (imageApiService.page > totalPage) {
-      btnLoadMore.classList.add('is-hidden');
+      return error;
+    }
+    appendMarkup(hits);
+  } catch (error) {
+    btnLoadMore.classList.add('is-hidden');
       Notiflix.Notify.failure(
         "We're sorry, but you've reached the end of search results."
       );
-    }
-    appendMarkup(hits);
-  });
+  }
 }
 
-function appendMarkup(hits) {
-  cardsEl.insertAdjacentHTML('beforeend', renderCards(hits));
+function appendMarkup(card) {
+  cardsEl.insertAdjacentHTML('beforeend', renderCards(card));
   lightbox.refresh();
 }
 
-function renderCards(hits) {
-  return hits
+function renderCards(card) {
+  return card
     .map(
       ({
         webformatURL,
@@ -93,3 +100,4 @@ function clearMarkup() {
 const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
+
